@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CompanyDataComponent } from './company-data/company-data.component';
 import { UserDataComponent } from './user-data/user-data.component';
 import { SummaryComponent } from './summary/summary.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SummaryComponent } from './summary/summary.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

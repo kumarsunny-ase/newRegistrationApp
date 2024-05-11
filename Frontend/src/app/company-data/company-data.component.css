@@ -1,0 +1,48 @@
+.container {
+    max-width: 800px; /* Adjust the maximum width as needed */
+    margin: 50px auto 0; /* Center the container horizontally and add margin-top */
+    height: calc(100vh - 100px); /* Set the container height to full viewport height minus 100px */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.jumbotron {
+    background-color: #f8f9fa; /* Set background color */
+    border-radius: 15px; /* Apply border radius */
+    padding: 40px; /* Increase padding */
+    width: 100%; /* Set width to 100% */
+    max-width: 700px; /* Set maximum width */
+}
+
+.form-group {
+    margin-bottom: 30px; /* Increase margin between form elements */
+}
+
+label {
+    font-weight: bold; /* Make labels bold */
+    font-size: 18px; /* Increase font size */
+    margin-bottom: 10px; /* Add margin bottom for space */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select {
+    font-size: 18px; /* Increase input font size */
+    padding: 15px; /* Increase input padding */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Set primary button color */
+    border-color: #007bff; /* Set primary button border color */
+    color: #fff; /* Set text color */
+    padding: 15px 30px; /* Increase button padding */
+    border-radius: 8px; /* Increase border radius */
+    font-size: 18px; /* Increase button font size */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Change button color on hover */
+    border-color: #0056b3; /* Change border color on hover */
+}
