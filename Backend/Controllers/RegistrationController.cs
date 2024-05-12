@@ -67,8 +67,8 @@ namespace newRegistrationApp.Controllers
         [HttpPost("step3")]
         public async Task<IActionResult> AddSummary(Summary summaryData)
         {
-            if (!summaryData.TermsOfService)
-                return BadRequest("Terms of Service not accepted");
+            //if (!summaryData.TermsOfService)
+            //    return BadRequest("Terms of Service not accepted");
 
             try
             {

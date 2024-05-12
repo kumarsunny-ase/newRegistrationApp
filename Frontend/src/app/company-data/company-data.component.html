@@ -1,24 +1,24 @@
 
 <div class="container mt-3">
-    <form>
+    <form #form="ngForm" (ngSubmit)="onFormSubmit()">
         <div class="row jumbotron box8">
             <div class="col-sm-12 mx-t3 mb-4">
-                <h2 class="text-center text-info">Registration</h2>
+                <h2 class="text-center text-info">Registration Users Company</h2>
             </div>
             <div class="col-sm-12 form-group">
-                <label for="name-f">Name</label>
-                <input type="text" class="form-control" name="fname" id="name-f" placeholder="Enter your company name."
-                    required>
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Enter your company name."
+                   [(ngModel)]="model.name" required>
             </div>
         <div class="col-sm-12 form-group">
             <label for="Industry">Industry <i class="fas fa-caret-down"></i></label>
-            <select class="form-control custom-select browser-default"  id="Industry" name="Industry">
+            <select class="form-control custom-select browser-default"  id="Industry" name="Industry"
+            [(ngModel)]="model.industry">
                 <option *ngFor="let industry of industries" [value]="industry">{{ industry }}</option> 
             </select>
         </div>
-            <!-- Other form elements can be added here -->
             <div class="col-sm-12 form-group mb-0">
-                <button class="btn btn-primary float-right">Next</button>
+                <button class="btn btn-primary float-right" type="submit">Next</button>
             </div>
         </div>
     </form>

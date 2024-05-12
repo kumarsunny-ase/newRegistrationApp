@@ -1,0 +1,34 @@
+.form-registerlabel {
+    text-align: center;
+}
+
+.jumbotron {
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    width: 100%;
+}
+
+.form-label {
+    font-weight: bold;
+    text-align: left;
+}
+.button-group {
+    display: flex;
+    justify-content: space-between; /* Adjust as needed */
+    margin-top: 20px; /* Adjust as needed */
+}
+
+.button-group .btn {
+    flex: 1; /* Equal width for both buttons */
+    margin: 0 5px; /* Adjust as needed */
+}
+
+
+

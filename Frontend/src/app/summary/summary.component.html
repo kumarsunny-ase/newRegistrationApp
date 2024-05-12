@@ -1,1 +1,51 @@
-<p>summary works!</p>
+<div class="container">
+    <h2>Summary</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th colspan="2" >Company Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Name:</strong></td>
+                <td>{{ formData.company?.name }}</td>
+            </tr>
+            <tr>
+                <td><strong>Industry:</strong></td>
+                <td>{{ formData.company?.industry }}</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th colspan="2">User Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Name:</strong></td>
+                <td>{{ formData.user?.name }}</td>
+            </tr>
+            <tr>
+                <td><strong>First Name:</strong></td>
+                <td>{{ formData.user?.firstName }}</td>
+            </tr>
+            <tr>
+                <td><strong>User Name:</strong></td>
+                <td>{{ formData.user?.userName }}</td>
+            </tr>
+            <tr>
+                <td><strong>Email:</strong></td>
+                <td>{{ formData.user?.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="checkbox-container">
+        <input type="checkbox" class="form-check d-inline" id="chb" required>
+        <label for="chb" class="form-check-label"><strong>I accept all terms and conditions.</strong></label>
+    </div>
+    <div class="button-group">
+        <button class="btn btn-secondary btn-block" type="button" (click)="goBack()">Back</button>
+        <button class="btn btn-primary btn-block" (click)="saveData()"><strong>Submit Data</strong></button>
+    </div>
+</div>
