@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormDataService } from '../services/formData/form-data.service';
 import { RegistrationService } from '../services/registration/registration.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-summary',
@@ -12,12 +13,14 @@ export class SummaryComponent implements OnInit {
 
   constructor(
     private formDataService: FormDataService,
-    private apiService: RegistrationService
+    private apiService: RegistrationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.formData = this.formDataService.formData;
     console.log(this.formData);
+    
   }
 
   saveData() {
@@ -34,6 +37,6 @@ export class SummaryComponent implements OnInit {
   }
 
   goBack() {
-    
+    this.router.navigate(['/user']);
   }
 }

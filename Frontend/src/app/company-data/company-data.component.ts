@@ -24,6 +24,9 @@ export class CompanyDataComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchIndustries();
+     if (this.formDataService.formData.company) {
+       this.model = this.formDataService.formData.company;
+     }
   }
   fetchIndustries() {
     this.apiService.getIndustries().subscribe((data: any[]) => {

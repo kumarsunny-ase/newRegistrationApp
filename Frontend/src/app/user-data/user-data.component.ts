@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { user } from '../models/user.model';
 import { RegistrationService } from '../services/registration/registration.service';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { FormDataService } from '../services/formData/form-data.service';
   templateUrl: './user-data.component.html',
   styleUrls: ['./user-data.component.css'],
 })
-export class UserDataComponent {
+export class UserDataComponent implements OnInit{
   model!: user;
 
   constructor(
@@ -26,6 +26,11 @@ export class UserDataComponent {
       confirmPassword: '',
     };
   }
+  ngOnInit(): void {
+    if(this.formDataService.formData.user) {
+      this.model = this.formDataService.formData.user
+    }
+  }
 
   onFormSubmit() {
     this.formDataService.formData.user = this.model;
@@ -33,6 +38,6 @@ export class UserDataComponent {
     console.log(this.formDataService);
   }
   goBack() {
-    
+    this.router.navigate(['']);
   }
 }
