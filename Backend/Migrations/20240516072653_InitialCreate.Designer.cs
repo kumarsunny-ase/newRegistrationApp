@@ -11,8 +11,8 @@ using newRegistrationApp.Data;
 namespace newRegistrationApp.Migrations
 {
     [DbContext(typeof(RegistrationDbContext))]
-    [Migration("20240511113948_UpdateSummaryTable1")]
-    partial class UpdateSummaryTable1
+    [Migration("20240516072653_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,23 +20,19 @@ namespace newRegistrationApp.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.18");
 
-            modelBuilder.Entity("newRegistrationApp.Models.Domain.Company", b =>
+            modelBuilder.Entity("newRegistrationApp.Models.Domain.Industry", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Industry")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("IndustryName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies");
+                    b.ToTable("industries");
                 });
 
             modelBuilder.Entity("newRegistrationApp.Models.Domain.Summary", b =>
@@ -45,28 +41,8 @@ namespace newRegistrationApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("CompanyId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("TermsOfService")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("summaries");
-                });
-
-            modelBuilder.Entity("newRegistrationApp.Models.Domain.User", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ConfirmPassword")
@@ -81,6 +57,10 @@ namespace newRegistrationApp.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Industry")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -89,32 +69,16 @@ namespace newRegistrationApp.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("TermsOfService")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("newRegistrationApp.Models.Domain.Summary", b =>
-                {
-                    b.HasOne("newRegistrationApp.Models.Domain.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("newRegistrationApp.Models.Domain.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-
-                    b.Navigation("User");
+                    b.ToTable("summaries");
                 });
 #pragma warning restore 612, 618
         }

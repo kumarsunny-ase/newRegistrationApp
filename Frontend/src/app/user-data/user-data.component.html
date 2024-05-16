@@ -1,39 +1,62 @@
 <div class="container mt-3">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form class="registration-form" #form="ngForm" (ngSubmit)="onFormSubmit()">
+            <form class="registration-form" [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h2 class="card-title text-center text-info mb-4">Register User Data</h2>
                         <div class="form-group">
                             <label for="name" class="form-label font-weight-bold align-left">Name</label>
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name."
-                                [(ngModel)]="model.name" required>
+                            <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter your name."
+                                [(ngModel)]="model.name">
+                            <div *ngIf="userForm.get('name')?.invalid && (userForm.get('name')?.dirty || userForm.get('name')?.touched)"
+                                class="alert alert-danger">
+                                 name is required.
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="name-f" class="form-label font-weight-bold align-left">First Name</label>
-                            <input type="text" class="form-control" name="fname" id="name-f"
-                                placeholder="Enter your first name." [(ngModel)]="model.firstName" required>
+                            <input type="text" class="form-control" formControlName="firstName" id="name-f"
+                                placeholder="Enter your first name." [(ngModel)]="model.firstName">
+                            <div *ngIf="userForm.get('firstName')?.invalid && (userForm.get('firstName')?.dirty || userForm.get('firstName')?.touched)"
+                                class="alert alert-danger">
+                                First Name is required.
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="name-u" class="form-label font-weight-bold align-left">User name</label>
-                            <input type="text" class="form-control" name="uname" id="name-u"
-                                placeholder="Enter your user name." [(ngModel)]="model.userName" required>
+                            <input type="text" class="form-control" formControlName="userName" id="name-u"
+                                placeholder="Enter your user name." [(ngModel)]="model.userName">
+                                <div *ngIf="userForm.get('userName')?.invalid && (userForm.get('userName')?.dirty || userForm.get('userName')?.touched)"
+                                    class="alert alert-danger">
+                                    User Name is required.
+                                </div>
                         </div>
                         <div class="form-group">
                             <label for="email" class="form-label font-weight-bold align-left">Email</label>
-                            <input type="email" class="form-control" name="email" id="email"
+                            <input type="email" class="form-control" formControlName="email" id="email"
                                 placeholder="Enter your email." [(ngModel)]="model.email" required>
+                            <div *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)"
+                                class="alert alert-danger">
+                                Email is required.
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="pass" class="form-label font-weight-bold align-left">Password</label>
-                            <input type="password" name="password" class="form-control" id="pass"
+                            <input type="text" formControlName="password" class="form-control" id="pass"
                                 placeholder="Enter your password." [(ngModel)]="model.password" required>
+                            <div *ngIf="userForm.get('password')?.invalid && (userForm.get('password')?.dirty || userForm.get('password')?.touched)"
+                                class="alert alert-danger">
+                                Password required.
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="pass2" class="form-label font-weight-bold align-left">Confirm Password</label>
-                            <input type="password" name="cnf-password" class="form-control" id="pass2"
-                                placeholder="Re-enter your password." [(ngModel)]="model.confirmPassword" required>
+                            <input type="text" formControlName="confirmPassword" class="form-control" id="pass2"
+                                placeholder="Re-enter your password." [(ngModel)]="model.confirmPassword" 
+                                 (input)="validatePassword()" >
+                            <div *ngIf="userForm.get('confirmPassword')?.hasError('mismatch')" class="alert alert-danger">
+                                Confirm password should be same as password</div>
                         </div>
                         <div class="button-group">
                             <button class="btn btn-secondary btn-block" type="button" (click)="goBack()">Back</button>

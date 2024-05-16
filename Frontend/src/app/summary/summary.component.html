@@ -41,8 +41,11 @@
         </tbody>
     </table>
     <div class="checkbox-container">
-        <input type="checkbox" class="form-check d-inline" id="chb" required>
-        <label for="chb" class="form-check-label"><strong>I accept all terms and conditions.</strong></label>
+        <input type="checkbox" class="form-check d-inline" id="chb" [(ngModel)]="model.termsOfServices" required #termsCheckbox>
+        <label for="chb" class="form-check-label"><strong>I accept all terms and conditions **.</strong></label>
+    </div>
+    <div *ngIf="termsCheckbox && termsCheckbox.checked === false && formSubmitted" class="alert alert-danger">
+        Mandatory Field!
     </div>
     <div class="button-group">
         <button class="btn btn-secondary btn-block" type="button" (click)="goBack()">Back</button>

@@ -11,8 +11,8 @@ using newRegistrationApp.Data;
 namespace newRegistrationApp.Migrations
 {
     [DbContext(typeof(RegistrationDbContext))]
-    [Migration("20240511113205_UpdateSummaryTable")]
-    partial class UpdateSummaryTable
+    [Migration("20240516090634_updateSummaryTable")]
+    partial class updateSummaryTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,29 +20,29 @@ namespace newRegistrationApp.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.18");
 
-            modelBuilder.Entity("newRegistrationApp.Models.Domain.Company", b =>
+            modelBuilder.Entity("newRegistrationApp.Models.Domain.Industry", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Industry")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("IndustryName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies");
+                    b.ToTable("industries");
                 });
 
-            modelBuilder.Entity("newRegistrationApp.Models.Domain.User", b =>
+            modelBuilder.Entity("newRegistrationApp.Models.Domain.Summary", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ConfirmPassword")
@@ -57,6 +57,10 @@ namespace newRegistrationApp.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Industry")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -65,13 +69,16 @@ namespace newRegistrationApp.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("TermsOfServices")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("summaries");
                 });
 #pragma warning restore 612, 618
         }

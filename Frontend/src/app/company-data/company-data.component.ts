@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistrationService } from '../services/registration/registration.service';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { company } from '../models/company.model';
 import { FormDataService } from '../services/formData/form-data.service';
@@ -15,7 +15,12 @@ export class CompanyDataComponent implements OnInit {
   registrationForm!: FormGroup;
   industries: string[] = [];
 
-  constructor(private apiService: RegistrationService, private router: Router, private formDataService: FormDataService) {
+  constructor(
+    private apiService: RegistrationService,
+    private router: Router,
+    private formDataService: FormDataService,
+    private formBuilder: FormBuilder
+  ) {
     this.model = {
       name: '',
       industry: '',
@@ -24,20 +29,25 @@ export class CompanyDataComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchIndustries();
-     if (this.formDataService.formData.company) {
-       this.model = this.formDataService.formData.company;
-     }
+    this.registrationForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      industry: ['', Validators.required],
+    });
+    if (this.formDataService.formData.company) {
+      this.model = this.formDataService.formData.company;
+    }
   }
+
   fetchIndustries() {
     this.apiService.getIndustries().subscribe((data: any[]) => {
-      this.industries = data.map((item) => item.industry);
+      this.industries = data.map((item) => item.industryName);
     });
   }
 
   onFormSubmit() {
-    console.log(this.model);
-    this.formDataService.formData.company = this.model
-    this.router.navigate(['/user']);
-    console.log(this.formDataService.formData)
+    if (this.registrationForm.valid) {
+      this.formDataService.formData.company = this.model;
+      this.router.navigate(['/user']);
+    }
   }
 }

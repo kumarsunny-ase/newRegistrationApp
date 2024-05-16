@@ -22,46 +22,26 @@ namespace newRegistrationApp.Controllers
             _registrationDbContext = registrationDbContext;
         }
 
-        [HttpGet]
+        [HttpGet("industries")]
         public IActionResult GetCompany()
         {
-            var companies = _registrationDbContext.Companies.ToList();
-            return Ok(companies);
+            var industry = _registrationDbContext.industries.ToList();
+            return Ok(industry);
         }
 
         [HttpPost("step1")]
-        public IActionResult AddCompany(AddCompanyDTO request)
+        public IActionResult AddCompany(IndustryDTO request)
         {
-            var companies = new Company
+            var industry = new Industry
             {
                 Id = Guid.NewGuid(),
-                Name = request.Name,
-                Industry = request.Industry
+                IndustryName = request.IndustryName
             };
 
-            _registrationDbContext.Companies.Add(companies);
+            _registrationDbContext.industries.Add(industry);
             _registrationDbContext.SaveChanges();
 
-            return Ok(companies);
-        }
-
-        [HttpPost("step2")]
-        public IActionResult AddUser(UserDTO request)
-        {
-            var users = new User
-            {
-                Id = Guid.NewGuid(),
-                Name = request.Name,
-                FirstName = request.FirstName,
-                UserName = request.UserName,
-                Password = request.Password,
-                Email = request.Email
-            };
-
-            _registrationDbContext.Users.Add(users);
-            _registrationDbContext.SaveChanges();
-
-            return Ok(users);
+            return Ok(industry);
         }
 
         [HttpPost("step3")]
@@ -72,9 +52,7 @@ namespace newRegistrationApp.Controllers
 
             try
             {
-                _registrationDbContext.Companies.Add(summaryData.Company);
-
-                _registrationDbContext.Users.Add(summaryData.User);
+                _registrationDbContext.summaries.Add(summaryData);
 
                 await _registrationDbContext.SaveChangesAsync();
             }
@@ -84,13 +62,6 @@ namespace newRegistrationApp.Controllers
             }
 
             return Ok();
-        }
-
-        [HttpGet("User")]
-        public IActionResult GetUser()
-        {
-            var users = _registrationDbContext.Users.ToList();
-            return Ok(users);
         }
     }
 }

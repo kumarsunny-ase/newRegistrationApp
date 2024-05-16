@@ -9,7 +9,9 @@ export class RegistrationService {
   constructor(private http: HttpClient) {}
 
   getIndustries(): Observable<string[]> {
-    return this.http.get<string[]>('https://localhost:7019/api/Registration');
+    return this.http.get<string[]>(
+      'https://localhost:7019/api/Registration/industries'
+    );
   }
 
   submitData(formData: any) {

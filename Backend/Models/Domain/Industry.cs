@@ -1,11 +1,10 @@
 ﻿using System;
 namespace newRegistrationApp.Models.Domain
 {
-	public class Company
+	public class Industry
 	{
         public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Industry { get; set; }
+        public string IndustryName { get; set; }
     }
 }
 

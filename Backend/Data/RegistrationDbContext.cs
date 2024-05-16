@@ -10,8 +10,7 @@ namespace newRegistrationApp.Data
         {
         }
 
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Industry> industries { get; set; }
         public DbSet<Summary> summaries { get; set; }
     }
 }
