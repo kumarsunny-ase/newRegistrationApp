@@ -51,4 +51,7 @@
         <button class="btn btn-secondary btn-block" type="button" (click)="goBack()">Back</button>
         <button class="btn btn-primary btn-block" (click)="saveData()"><strong>Submit Data</strong></button>
     </div>
+    <div *ngIf="dataSaved" class="alert alert-success" style="margin-top: 20px;">
+        {{ responseData }}
+    </div>
 </div>

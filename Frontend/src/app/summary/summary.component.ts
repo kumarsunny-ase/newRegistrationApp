@@ -25,6 +25,8 @@ export class SummaryComponent implements OnInit {
   };
   formData: any;
   formSubmitted: boolean = false;
+  dataSaved: boolean = false;
+  responseData: any = {};
   constructor(
     private formDataService: FormDataService,
     private apiService: RegistrationService,
@@ -54,9 +56,9 @@ export class SummaryComponent implements OnInit {
     if (this.model.termsOfServices) {
       console.log(this.model);
       this.apiService.submitData(this.model).subscribe(
-        (response) => {
-          // Handle response from API
-          console.log(response);
+        (response: any) => {
+          this.responseData = response.message;
+          this.dataSaved = true;
         },
         (error) => {
           // Handle error

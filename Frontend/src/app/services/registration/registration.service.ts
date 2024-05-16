@@ -16,7 +16,7 @@ export class RegistrationService {
 
   submitData(formData: any) {
     return this.http.post<any>(
-      'https://localhost:7019/api/Registration/step3',
+      'https://localhost:7019/api/Registration/summary',
       formData
     );
   }

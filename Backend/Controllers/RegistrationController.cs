@@ -29,8 +29,8 @@ namespace newRegistrationApp.Controllers
             return Ok(industry);
         }
 
-        [HttpPost("step1")]
-        public IActionResult AddCompany(IndustryDTO request)
+        [HttpPost("save")]
+        public IActionResult AddIndustry(IndustryDTO request)
         {
             var industry = new Industry
             {
@@ -44,11 +44,9 @@ namespace newRegistrationApp.Controllers
             return Ok(industry);
         }
 
-        [HttpPost("step3")]
+        [HttpPost("summary")]
         public async Task<IActionResult> AddSummary(Summary summaryData)
         {
-            //if (!summaryData.TermsOfService)
-            //    return BadRequest("Terms of Service not accepted");
 
             try
             {
@@ -58,10 +56,10 @@ namespace newRegistrationApp.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception("Failed to save summary data to the database.", ex);
+                throw new Exception("Failed to save user data to the database.", ex);
             }
 
-            return Ok();
+            return Ok(new { message = "User data saved successfully" });
         }
     }
 }
