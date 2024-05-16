@@ -14,7 +14,9 @@
     width: 100%; /* Set width to 100% */
     max-width: 700px; /* Set maximum width */
 }
-
+.box8{
+  box-shadow: 0px 0px 5px 1px #999;
+}
 .form-group {
     margin-bottom: 30px; /* Increase margin between form elements */
 }
