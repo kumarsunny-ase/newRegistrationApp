@@ -48,6 +48,9 @@ export class CompanyDataComponent implements OnInit {
     if (this.registrationForm.valid) {
       this.formDataService.formData.company = this.model;
       this.router.navigate(['/user']);
+    } else {
+      // Notify user that the checkbox is mandatory
+      alert('Please fill up the blanks.');
     }
   }
 }

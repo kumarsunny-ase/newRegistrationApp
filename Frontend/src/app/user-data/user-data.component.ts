@@ -55,10 +55,12 @@ export class UserDataComponent implements OnInit{
   }
 
   onFormSubmit() {
-    if(this.userForm.valid) {
+    if (this.userForm.valid) {
       this.formDataService.formData.user = this.model;
       this.router.navigate(['/summary']);
-    }   
+    } else {
+      alert('Please fill up the blanks.');
+    }
   }
   goBack() {
     this.router.navigate(['']);
