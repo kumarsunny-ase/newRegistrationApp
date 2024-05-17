@@ -14,6 +14,12 @@ export class RegistrationService {
     );
   }
 
+  checkUserName(username: string): Observable<boolean> {
+    return this.http.get<boolean>(
+      `https://localhost:7019/api/Registration/userName?username=${username}`
+    );
+  }
+
   submitData(formData: any) {
     return this.http.post<any>(
       'https://localhost:7019/api/Registration/summary',

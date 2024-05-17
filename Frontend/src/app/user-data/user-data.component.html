@@ -7,11 +7,11 @@
                         <h2 class="card-title text-center text-info mb-4">Register User Data</h2>
                         <div class="form-group">
                             <label for="name" class="form-label font-weight-bold align-left">Name</label>
-                            <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter your name."
-                                [(ngModel)]="model.name">
+                            <input type="text" class="form-control" formControlName="name" id="name"
+                                placeholder="Enter your name." [(ngModel)]="model.name">
                             <div *ngIf="userForm.get('name')?.invalid && (userForm.get('name')?.dirty || userForm.get('name')?.touched)"
                                 class="alert alert-danger">
-                                 name is required.
+                                name is required.
                             </div>
                         </div>
                         <div class="form-group">
@@ -25,12 +25,16 @@
                         </div>
                         <div class="form-group">
                             <label for="name-u" class="form-label font-weight-bold align-left">User name</label>
-                            <input type="text" class="form-control" formControlName="userName" id="name-u"
-                                placeholder="Enter your user name." [(ngModel)]="model.userName">
-                                <div *ngIf="userForm.get('userName')?.invalid && (userForm.get('userName')?.dirty || userForm.get('userName')?.touched)"
-                                    class="alert alert-danger">
-                                    User Name is required.
-                                </div>
+                            <input type="text" class="form-control" formControlName="userName" id="name-u" placeholder="Enter your user name."
+                                [(ngModel)]="model.userName">
+                            <div *ngIf="userForm.get('userName')?.errors?.['required'] && userForm.get('userName')?.touched"
+                                class="alert alert-danger">
+                                User Name is required.
+                            </div>
+                            <div *ngIf="userForm.get('userName')?.hasError('usernameExists') && userForm.get('userName')?.dirty"
+                                class="alert alert-danger">
+                                Username already exists!! please choose a different one.
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="email" class="form-label font-weight-bold align-left">Email</label>
@@ -53,9 +57,10 @@
                         <div class="form-group">
                             <label for="pass2" class="form-label font-weight-bold align-left">Confirm Password</label>
                             <input type="text" formControlName="confirmPassword" class="form-control" id="pass2"
-                                placeholder="Re-enter your password." [(ngModel)]="model.confirmPassword" 
-                                 (input)="validatePassword()" >
-                            <div *ngIf="userForm.get('confirmPassword')?.hasError('mismatch')" class="alert alert-danger">
+                                placeholder="Re-enter your password." [(ngModel)]="model.confirmPassword"
+                                (input)="validatePassword()">
+                            <div *ngIf="userForm.get('confirmPassword')?.hasError('mismatch')"
+                                class="alert alert-danger">
                                 Confirm password should be same as password</div>
                         </div>
                         <div class="button-group">

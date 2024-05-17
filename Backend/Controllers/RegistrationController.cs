@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using newRegistrationApp.Data;
 using newRegistrationApp.Models.Domain;
 using newRegistrationApp.Models.DTO;
@@ -29,6 +30,13 @@ namespace newRegistrationApp.Controllers
             return Ok(industry);
         }
 
+        [HttpGet("userName")]
+        public async Task<IActionResult> CheckUserName(string username)
+        {
+            var isTaken = await _registrationDbContext.summaries.AnyAsync(u => u.UserName == username);
+            return Ok(isTaken);
+        }
+
         [HttpPost("save")]
         public IActionResult AddIndustry(IndustryDTO request)
         {
@@ -39,6 +47,7 @@ namespace newRegistrationApp.Controllers
             };
 
             _registrationDbContext.industries.Add(industry);
+            
             _registrationDbContext.SaveChanges();
 
             return Ok(industry);
