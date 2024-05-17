@@ -8,7 +8,6 @@ using newRegistrationApp.Data;
 using newRegistrationApp.Models.Domain;
 using newRegistrationApp.Models.DTO;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace newRegistrationApp.Controllers
 {
@@ -23,36 +22,91 @@ namespace newRegistrationApp.Controllers
             _registrationDbContext = registrationDbContext;
         }
 
+        /// <summary>
+        /// Retrieves a list of industries.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint allows users to fetch the list of industries available in the database.
+        /// </remarks>
+        /// <returns>The list of industries.</returns>
         [HttpGet("industries")]
-        public IActionResult GetCompany()
+        public IActionResult GetIndustries()
         {
-            var industry = _registrationDbContext.industries.ToList();
-            return Ok(industry);
+            try
+            {
+                var industry = _registrationDbContext.industries.ToList();
+                return Ok(industry);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while fetching industries.", ex);
+            }
+            
         }
 
+        /// <summary>
+        /// Checks if a username is already taken.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint allows users to check if a username is already registered in the database.
+        /// </remarks>
+        /// <param name="username">The username to check.</param>
+        /// <returns>True if the username is already taken, false otherwise.</returns>
         [HttpGet("userName")]
         public async Task<IActionResult> CheckUserName(string username)
         {
-            var isTaken = await _registrationDbContext.summaries.AnyAsync(u => u.UserName == username);
-            return Ok(isTaken);
+            try
+            {
+                var isTaken = await _registrationDbContext.summaries.AnyAsync(u => u.UserName == username);
+                return Ok(isTaken);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while checking username availability.", ex);
+            }
+            
         }
 
+        /// <summary>
+        /// Adds a new industry to the database.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint allows users to add a new industry by providing the industry name.
+        /// </remarks>
+        /// <param name="request">An <see cref="IndustryDTO"/> object containing the industry name.</param>
+        /// <returns>The newly added industry.</returns>
         [HttpPost("save")]
         public IActionResult AddIndustry(IndustryDTO request)
         {
-            var industry = new Industry
+            try
             {
-                Id = Guid.NewGuid(),
-                IndustryName = request.IndustryName
-            };
+                var industry = new Industry
+                {
+                    Id = Guid.NewGuid(),
+                    IndustryName = request.IndustryName
+                };
 
-            _registrationDbContext.industries.Add(industry);
+                _registrationDbContext.industries.Add(industry);
+
+                _registrationDbContext.SaveChanges();
+
+                return Ok(industry);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while saving industry.", ex);
+            }
             
-            _registrationDbContext.SaveChanges();
-
-            return Ok(industry);
         }
 
+        /// <summary>
+        /// Adds a new user summary to the database.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint allows users to add their summary information, such as name and other relevant details.
+        /// </remarks>
+        /// <param name="summaryData">A <see cref="Summary"/> object containing the user's summary data.</param>
+        /// <returns>A success message indicating the user data has been saved.</returns>
         [HttpPost("summary")]
         public async Task<IActionResult> AddSummary(Summary summaryData)
         {
@@ -62,13 +116,13 @@ namespace newRegistrationApp.Controllers
                 _registrationDbContext.summaries.Add(summaryData);
 
                 await _registrationDbContext.SaveChangesAsync();
+
+                return Ok(new { message = "User data saved successfully" });
             }
             catch (Exception ex)
             {
                 throw new Exception("Failed to save user data to the database.", ex);
             }
-
-            return Ok(new { message = "User data saved successfully" });
         }
     }
 }
