@@ -37,7 +37,8 @@
                 <td><strong>User Name:</strong></td>
                 <td>{{ formData.user?.userName }}</td>
             </tr>
-            <tr>
+            <!-- Check if email field has a value -->
+            <tr *ngIf="formData.user?.email">
                 <td><strong>Email:</strong></td>
                 <td>{{ formData.user?.email }}</td>
             </tr>

@@ -19,6 +19,11 @@
     font-weight: bold;
     text-align: left;
 }
+
+.optional {
+    font-weight: normal;
+}
+
 .button-group {
     display: flex;
     justify-content: space-between; /* Adjust as needed */

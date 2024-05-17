@@ -55,7 +55,7 @@ export class UserDataComponent implements OnInit {
           updateOn: 'blur',
         },
       ],
-      email: ['', Validators.required],
+      email: '',
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
     });

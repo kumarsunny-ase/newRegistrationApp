@@ -43,13 +43,9 @@
                         </div>
                         <!-- Email field -->
                         <div class="form-group">
-                            <label for="email" class="form-label font-weight-bold align-left">Email</label>
+                            <label for="email" class="form-label font-weight-bold align-left">Email <span class="optional">(optional)</span></label>
                             <input type="email" class="form-control" formControlName="email" id="email"
-                                placeholder="Enter your email." [(ngModel)]="model.email" required>
-                            <div *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)"
-                                class="alert alert-danger">
-                                Email is required.
-                            </div>
+                                placeholder="Enter your email." [(ngModel)]="model.email">
                         </div>
                         <!-- Password field -->
                         <div class="form-group position-relative">
@@ -91,7 +87,7 @@
                             <!-- Error message for mismatched passwords -->
                             <div *ngIf="userForm.get('confirmPassword')?.hasError('mismatch')"
                                 class="alert alert-danger">
-                                Confirm password should be same as password
+                                Confirm password should be matched with password!
                             </div>
                         </div>
 

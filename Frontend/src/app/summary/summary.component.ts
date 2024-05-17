@@ -49,7 +49,7 @@ export class SummaryComponent implements OnInit {
       name: userFormData.name,
       firstName: userFormData.firstName,
       userName: userFormData.userName,
-      email: userFormData.email,
+      email: userFormData.email ? userFormData.email : '', // Check if email field has a value before assigning it
       password: userFormData.password,
       confirmPassword: userFormData.confirmPassword,
     };
