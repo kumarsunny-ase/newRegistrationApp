@@ -12,6 +12,7 @@ import { company } from '../models/company.model';
   styleUrls: ['./summary.component.css'],
 })
 export class SummaryComponent implements OnInit {
+  // Define model for summary
   model: summary = {
     companyName: '',
     industry: '',
@@ -34,10 +35,13 @@ export class SummaryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Initialize form data from from service
     this.formData = this.formDataService.formData;
+    // Extract user and company data from form data
     const userFormData: user = this.formData.user;
     const companyFormData: company = this.formData.company;
 
+    // Populate summary model with form data
     this.model = {
       ...this.model,
       companyName: companyFormData.name,
@@ -51,13 +55,19 @@ export class SummaryComponent implements OnInit {
     };
   }
 
+  // Save summary data
   saveData() {
+    // Set form submitted flag to true
     this.formSubmitted = true;
+    // Check if terms of services are accepted
     if (this.model.termsOfServices) {
-      console.log(this.model);
+      // Call API service to submit data
       this.apiService.submitData(this.model).subscribe(
+        // Handle success response
         (response: any) => {
+          // Set data saved flag to true
           this.responseData = response.message;
+          // Set data saved flag to true
           this.dataSaved = true;
         },
         (error) => {
@@ -71,7 +81,15 @@ export class SummaryComponent implements OnInit {
     }
   }
 
+  // Navigate back to user Page
   goBack() {
     this.router.navigate(['/user']);
+  }
+
+  //Navigate to the home page
+  backToHome() {
+    this.router.navigate(['']).then(() => {
+      window.location.reload();
+    });
   }
 }

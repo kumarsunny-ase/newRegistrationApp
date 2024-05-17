@@ -1,30 +1,37 @@
 <div class="container mt-3">
+    <!-- Registration form -->
     <form [formGroup]="registrationForm" (ngSubmit)="onFormSubmit()">
         <div class="row jumbotron box8">
             <div class="col-sm-12 mx-t3 mb-4">
                 <h2 class="text-center text-info">Registration Users Company</h2>
             </div>
+            <!-- Company Name field -->
             <div class="col-sm-12 form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" formControlName="name" id="name"
                     placeholder="Enter your company name." [(ngModel)]="model.name">
+                <!-- Error message for invalid company name -->
                 <div *ngIf="registrationForm.get('name')?.invalid && (registrationForm.get('name')?.dirty || registrationForm.get('name')?.touched)"
                     class="alert alert-danger">
                     Company name is required.
                 </div>
             </div>
+            <!-- Industry selection field -->
             <div class="col-sm-12 form-group">
                 <label for="Industry">Industry <i class="fas fa-caret-down"></i></label>
                 <select class="form-control custom-select browser-default" formControlName="industry" id="Industry"
                     name="Industry" [(ngModel)]="model.industry">
                     <option value="" disabled selected>Choose the Industry</option>
+                    <!-- Loop through industries and generate options -->
                     <option *ngFor="let industry of industries" [value]="industry">{{ industry }}</option>
                 </select>
+                <!-- Error message for invalid industry selection -->
                 <div *ngIf="registrationForm.get('industry')?.invalid && (registrationForm.get('industry')?.dirty || registrationForm.get('industry')?.touched)"
                     class="alert alert-danger">
                     Industry is required.
                 </div>
             </div>
+            <!-- Next button -->
             <div class="col-sm-12 form-group mb-0">
                 <button class="btn btn-primary float-right" type="submit">Next</button>
             </div>

@@ -11,6 +11,7 @@ import { FormDataService } from '../services/formData/form-data.service';
   styleUrls: ['./company-data.component.css'],
 })
 export class CompanyDataComponent implements OnInit {
+  // Declare model for company
   model!: company;
   registrationForm!: FormGroup;
   industries: string[] = [];
@@ -21,6 +22,7 @@ export class CompanyDataComponent implements OnInit {
     private formDataService: FormDataService,
     private formBuilder: FormBuilder
   ) {
+    // Initialize model with default values
     this.model = {
       name: '',
       industry: '',
@@ -28,25 +30,34 @@ export class CompanyDataComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Fetch industries data
     this.fetchIndustries();
+    // Initialize registration form with validation rules
     this.registrationForm = this.formBuilder.group({
       name: ['', Validators.required],
       industry: ['', Validators.required],
     });
+    // Populate form with existing company data if available
     if (this.formDataService.formData.company) {
       this.model = this.formDataService.formData.company;
     }
   }
 
+  // Fetch industries data from API
   fetchIndustries() {
     this.apiService.getIndustries().subscribe((data: any[]) => {
+      // Extract industry names from API response
       this.industries = data.map((item) => item.industryName);
     });
   }
 
+  // Handle form submission
   onFormSubmit() {
+    // Check if form is valid
     if (this.registrationForm.valid) {
+      // Save company data to form data service
       this.formDataService.formData.company = this.model;
+      // Navigate to user page
       this.router.navigate(['/user']);
     } else {
       // Notify user that the checkbox is mandatory

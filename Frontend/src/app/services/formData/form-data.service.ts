@@ -4,6 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class FormDataService {
-  formData: any = {};
+  formData: any = {}; // Object to store form data
   constructor() {}
 }

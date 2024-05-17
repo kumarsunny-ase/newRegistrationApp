@@ -7,5 +7,5 @@ export interface summary {
   email: string;
   password: string;
   confirmPassword: string;
-  termsOfServices: boolean
+  termsOfServices: boolean;
 }

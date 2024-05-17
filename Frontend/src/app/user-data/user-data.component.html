@@ -1,10 +1,12 @@
 <div class="container mt-3">
     <div class="row justify-content-center">
         <div class="col-md-6">
+            <!-- User registration form -->
             <form class="registration-form" [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h2 class="card-title text-center text-info mb-4">Register User Data</h2>
+                        <!-- Name field -->
                         <div class="form-group">
                             <label for="name" class="form-label font-weight-bold align-left">Name</label>
                             <input type="text" class="form-control" formControlName="name" id="name"
@@ -14,6 +16,7 @@
                                 name is required.
                             </div>
                         </div>
+                        <!-- First Name field -->
                         <div class="form-group">
                             <label for="name-f" class="form-label font-weight-bold align-left">First Name</label>
                             <input type="text" class="form-control" formControlName="firstName" id="name-f"
@@ -23,10 +26,12 @@
                                 First Name is required.
                             </div>
                         </div>
+                        <!-- User Name field -->
                         <div class="form-group">
                             <label for="name-u" class="form-label font-weight-bold align-left">User name</label>
-                            <input type="text" class="form-control" formControlName="userName" id="name-u" placeholder="Enter your user name."
-                                [(ngModel)]="model.userName">
+                            <input type="text" class="form-control" formControlName="userName" id="name-u"
+                                placeholder="Enter your user name." [(ngModel)]="model.userName">
+                            <!-- Validation error messages -->
                             <div *ngIf="userForm.get('userName')?.errors?.['required'] && userForm.get('userName')?.touched"
                                 class="alert alert-danger">
                                 User Name is required.
@@ -36,6 +41,7 @@
                                 Username already exists!! please choose a different one.
                             </div>
                         </div>
+                        <!-- Email field -->
                         <div class="form-group">
                             <label for="email" class="form-label font-weight-bold align-left">Email</label>
                             <input type="email" class="form-control" formControlName="email" id="email"
@@ -45,27 +51,56 @@
                                 Email is required.
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!-- Password field -->
+                        <div class="form-group position-relative">
                             <label for="pass" class="form-label font-weight-bold align-left">Password</label>
-                            <input type="text" formControlName="password" class="form-control" id="pass"
-                                placeholder="Enter your password." [(ngModel)]="model.password" required>
+                            <div class="input-group">
+                                <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password"
+                                    class="form-control" id="pass" placeholder="Enter your password."
+                                    [(ngModel)]="model.password" required>
+                                <!-- Eye icon button to toggle password visibility -->
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary eye-icon" type="button"
+                                        (click)="togglePasswordVisibility('password')">
+                                        <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Error message for invalid password -->
                             <div *ngIf="userForm.get('password')?.invalid && (userForm.get('password')?.dirty || userForm.get('password')?.touched)"
                                 class="alert alert-danger">
                                 Password required.
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!-- Confirm Password field -->
+                        <div class="form-group position-relative">
                             <label for="pass2" class="form-label font-weight-bold align-left">Confirm Password</label>
-                            <input type="text" formControlName="confirmPassword" class="form-control" id="pass2"
-                                placeholder="Re-enter your password." [(ngModel)]="model.confirmPassword"
-                                (input)="validatePassword()">
+                            <div class="input-group">
+                                <input type="{{ showConfirmPassword ? 'text' : 'password' }}"
+                                    formControlName="confirmPassword" class="form-control" id="pass2"
+                                    placeholder="Re-enter your password." [(ngModel)]="model.confirmPassword"
+                                    (input)="validatePassword()">
+                                <!-- Eye icon button to toggle confirm password visibility -->
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary eye-icon" type="button"
+                                        (click)="togglePasswordVisibility('confirmPassword')">
+                                        <i class="fa" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Error message for mismatched passwords -->
                             <div *ngIf="userForm.get('confirmPassword')?.hasError('mismatch')"
                                 class="alert alert-danger">
-                                Confirm password should be same as password</div>
+                                Confirm password should be same as password
+                            </div>
                         </div>
+
+                        <!-- Button group -->
                         <div class="button-group">
+                            <!-- Back button -->
                             <button class="btn btn-secondary btn-block" type="button" (click)="goBack()">Back</button>
-                            <button class="btn btn-primary btn-block">Submit</button>
+                            <!-- Next button -->
+                            <button class="btn btn-primary btn-block">Next</button>
                         </div>
                     </div>
                 </div>

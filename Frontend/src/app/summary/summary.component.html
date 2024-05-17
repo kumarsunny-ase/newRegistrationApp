@@ -1,9 +1,11 @@
 <div class="container">
+    <!-- Summary section -->
     <h2>Summary</h2>
-    <table class="data-table">
+    <table *ngIf="!dataSaved" class="data-table">
+        <!-- Company Data section -->
         <thead>
             <tr>
-                <th colspan="2" >Company Data</th>
+                <th colspan="2">Company Data</th>
             </tr>
         </thead>
         <tbody>
@@ -16,6 +18,7 @@
                 <td>{{ formData.company?.industry }}</td>
             </tr>
         </tbody>
+        <!-- User Data section -->
         <thead>
             <tr>
                 <th colspan="2">User Data</th>
@@ -40,18 +43,30 @@
             </tr>
         </tbody>
     </table>
-    <div class="checkbox-container">
-        <input type="checkbox" class="form-check d-inline" id="chb" [(ngModel)]="model.termsOfServices" required #termsCheckbox>
-        <label for="chb" class="form-check-label"><strong>I accept all terms and conditions **.</strong></label>
+    <!-- Terms and Conditions section -->
+    <div *ngIf="!dataSaved" class="checkbox-container">
+        <div>
+            <input type="checkbox" class="form-check d-inline" id="chb" [(ngModel)]="model.termsOfServices" required
+                #termsCheckbox>
+            <label for="chb" class="form-check-label"><strong>I accept all terms and conditions **.</strong></label>
+        </div>
+        <!-- Error message for unchecked terms and conditions -->
+        <div *ngIf="termsCheckbox && termsCheckbox.checked === false && formSubmitted" class="alert alert-danger">
+            Mandatory Field!
+        </div>
     </div>
-    <div *ngIf="termsCheckbox && termsCheckbox.checked === false && formSubmitted" class="alert alert-danger">
-        Mandatory Field!
-    </div>
-    <div class="button-group">
+    <!-- Button group -->
+    <div *ngIf="!dataSaved" class="button-group">
+        <!-- Back button -->
         <button class="btn btn-secondary btn-block" type="button" (click)="goBack()">Back</button>
+        <!-- Submit button -->
         <button class="btn btn-primary btn-block" (click)="saveData()"><strong>Submit Data</strong></button>
     </div>
+    <!-- Success message after data submission -->
     <div *ngIf="dataSaved" class="alert alert-success" style="margin-top: 20px;">
         {{ responseData }}
     </div>
+    <!-- Back to Home button -->
+    <button *ngIf="dataSaved" class="btn btn-primary btn-block" type="button" (click)="backToHome()">Back to
+        Home</button>
 </div>

@@ -30,6 +30,27 @@
     margin: 0 5px; /* Adjust as needed */
 }
 
+.eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translateY(-50%);
+    z-index: 2; /* Increase the z-index to ensure the icon is above the input */
+    border: 1px solid #ced4da; /* Match the input field's border color */
+    border-left: none; /* Ensure the eye icon's left border matches the input field */
+    border-radius: 0 4px 4px 0; /* Match the input field's border-radius */
+    
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group .form-control {
+    padding-right: 40px; /* Adjust as needed to accommodate the eye icon */
+    z-index: 1; /* Ensure the input field is behind the eye icon */
+}
+
 .alert {
     border-radius: 5px;
     font-size: 14px;
