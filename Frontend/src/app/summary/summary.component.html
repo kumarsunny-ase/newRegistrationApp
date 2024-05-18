@@ -52,8 +52,8 @@
             <label for="chb" class="form-check-label"><strong>I accept all terms and conditions **.</strong></label>
         </div>
         <!-- Error message for unchecked terms and conditions -->
-        <div *ngIf="termsCheckbox && termsCheckbox.checked === false && formSubmitted" class="alert alert-danger">
-            Mandatory Field!
+        <div *ngIf="!termsCheckbox?.checked && formSubmitted" style="color: rgb(230, 10, 10);">
+            (Terms and conditions must be accepted.)
         </div>
     </div>
     <!-- Button group -->
@@ -64,7 +64,7 @@
         <button class="btn btn-primary btn-block" (click)="saveData()"><strong>Submit Data</strong></button>
     </div>
     <!-- Success message after data submission -->
-    <div *ngIf="dataSaved" class="alert alert-success" style="margin-top: 20px;">
+    <div *ngIf="dataSaved" class="alert alert-success" style="margin-top: 20px; font-size: 18px;">
         {{ responseData }}
     </div>
     <!-- Back to Home button -->

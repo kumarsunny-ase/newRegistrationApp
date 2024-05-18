@@ -2,7 +2,7 @@
   font-family: Arial, sans-serif;
   border: 1px solid #ddd;
   padding: 20px;
-  max-width: 600px;
+  max-width: 700px;
   margin: 50px auto;
   text-align: center;
   margin-bottom: 20px;
@@ -32,20 +32,13 @@
 }
 
 .checkbox-wrapper {
-  display: flex;
+  display: inline-flex;
   align-items: center; /* Align items vertically */
 }
 
 /* Optional: Adjust margin between checkbox and label */
 .form-check-label {
   margin-left: 5px;
-}
-
-.checkbox-container input[type="checkbox"] {
-  margin-right: 5px; /* Add some space between the checkbox and the text */
-}
-
-.form-check-label {
   font-weight: bold;
 }
 
@@ -63,12 +56,12 @@
 }
 
 .button-group {
-    display: flex;
-    justify-content: space-between; /* Adjust as needed */
-    margin-top: 20px; /* Adjust as needed */
+  display: flex;
+  justify-content: space-between; /* Adjust as needed */
+  margin-top: 20px; /* Adjust as needed */
 }
 
 .button-group .btn {
-    flex: 1; /* Equal width for both buttons */
-    margin: 0 5px; /* Adjust as needed */
+  flex: 1; /* Equal width for both buttons */
+  margin: 0 5px; /* Adjust as needed */
 }
