@@ -16,6 +16,8 @@ This repository contains the source code for a web application built with .NET C
 - **Angular Frontend:**
   - Single-page application (SPA) architecture
   - Responsive design
+  - Authguard to prevent unauthorized access
+  - Service for managing API
 
 ## Registration Process
 
@@ -25,7 +27,7 @@ The registration process is divided into the following steps:
 
 2. **Collecting data about the new user:** Gather information about the new user, including personal details, contact information, etc.
 
-3. **Display of a summary and approval of terms of service:** Present a summary of the provided information to the user for review. The user is required to approve the terms of service before proceeding.
+3. **Display a summary and approval of terms of service:** Present a summary of the provided information to the user for review. The user is required to approve the terms of service before proceeding.
 
 4. **Saving all data in the database:** Once the user approves, save all collected data in the database securely.
 
@@ -54,4 +56,4 @@ Before running the application, ensure you have the following installed:
 
 ## Important Step
 
-1. **Change the server name in appsettings.json for access the database:** Before using the database and migration, update the server name in the `appsettings.json` file to match your MS SQL Server instance.
+1. **Change the server name in appsettings.json to access the database:** Before using the database and migration, update the server name in the `appsettings.json` file to match your MS SQL Server instance.
