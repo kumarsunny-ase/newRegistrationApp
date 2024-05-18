@@ -30,11 +30,11 @@ namespace newRegistrationApp.Controllers
         /// </remarks>
         /// <returns>The list of industries.</returns>
         [HttpGet("industries")]
-        public IActionResult GetIndustries()
+        public async Task<IActionResult> GetIndustries()
         {
             try
             {
-                var industry = _registrationDbContext.industries.ToList();
+                var industry = await _registrationDbContext.industries.ToListAsync();
                 return Ok(industry);
             }
             catch (Exception ex)
@@ -76,8 +76,13 @@ namespace newRegistrationApp.Controllers
         /// <param name="request">An <see cref="IndustryDTO"/> object containing the industry name.</param>
         /// <returns>The newly added industry.</returns>
         [HttpPost("save")]
-        public IActionResult AddIndustry(IndustryDTO request)
+        public async Task<IActionResult> AddIndustry(IndustryDTO request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             try
             {
                 var industry = new Industry
@@ -88,7 +93,7 @@ namespace newRegistrationApp.Controllers
 
                 _registrationDbContext.industries.Add(industry);
 
-                _registrationDbContext.SaveChanges();
+                await _registrationDbContext.SaveChangesAsync();
 
                 return Ok(industry);
             }
@@ -110,6 +115,10 @@ namespace newRegistrationApp.Controllers
         [HttpPost("summary")]
         public async Task<IActionResult> AddSummary(Summary summaryData)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             try
             {

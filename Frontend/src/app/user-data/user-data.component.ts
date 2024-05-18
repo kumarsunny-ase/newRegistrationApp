@@ -56,7 +56,14 @@ export class UserDataComponent implements OnInit {
         },
       ],
       email: '',
-      password: ['', Validators.required],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(50),
+        ],
+      ],
       confirmPassword: ['', Validators.required],
     });
     if (this.formDataService.formData.user) {
@@ -66,10 +73,10 @@ export class UserDataComponent implements OnInit {
 
   // Method to toggle password visibility
   togglePasswordVisibility(fieldName: string) {
-    if(fieldName === 'password') {
+    if (fieldName === 'password') {
       this.showPassword = !this.showPassword;
     } else if (fieldName === 'confirmPassword') {
-      this.showConfirmPassword = !this.showConfirmPassword
+      this.showConfirmPassword = !this.showConfirmPassword;
     }
   }
 

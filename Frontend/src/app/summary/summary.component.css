@@ -27,9 +27,18 @@
 }
 
 .checkbox-container {
-  margin-bottom: 20px;
   display: flex; /* Use flexbox */
   align-items: center; /* Align items vertically */
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center; /* Align items vertically */
+}
+
+/* Optional: Adjust margin between checkbox and label */
+.form-check-label {
+  margin-left: 5px;
 }
 
 .checkbox-container input[type="checkbox"] {
