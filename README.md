@@ -51,3 +51,7 @@ Before running the application, ensure you have the following installed:
 - [Node.js](https://nodejs.org/)
 - [Angular CLI](https://angular.io/cli)
 - [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+
+## Important Step
+
+1. **Change the server name in appsettings.json for access the database:** Before using the database and migration, update the server name in the `appsettings.json` file to match your MS SQL Server instance.
